@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 10% 45%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 10% 45%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 10% 45%;
+  --primary: 15 47% 56%;    /* RGB: 199,126,89 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 24 15% 57%;  /* RGB: 165,144,127 */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 24 15% 95%;
+  --muted-foreground: 24 5% 45%;
+  --accent: 24 15% 95%;
+  --accent-foreground: 24 15% 25%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 20 5% 90%;
+  --input: 20 5% 90%;
+  --ring: 15 47% 56%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 20 10% 10%;
+  --foreground: 0 0% 95%;
+  --card: 20 10% 12%;
+  --card-foreground: 0 0% 95%;
+  --popover: 20 10% 12%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 15 47% 56%;    /* RGB: 199,126,89 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 24 15% 57%;  /* RGB: 165,144,127 */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 24 15% 20%;
+  --muted-foreground: 24 5% 65%;
+  --accent: 24 15% 20%;
+  --accent-foreground: 24 15% 85%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 24 15% 25%;
+  --input: 24 15% 25%;
+  --ring: 15 47% 56%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
