@@ -13,6 +13,7 @@ import TestConfigPanel from './test/TestConfigPanel';
 import CardMode from './test/CardMode';
 import InputMode from './test/InputMode';
 import TestHeader from './test/TestHeader';
+import confetti from 'canvas-confetti';
 
 // Helper function to normalize a string for comparison
 function normalizeString(str: string): string {
@@ -45,6 +46,16 @@ interface TestSectionProps {
   sharedQuestions?: Question[];
   setSharedQuestions?: (questions: Question[]) => void;
 }
+
+// 添加烟花效果函数
+const triggerConfetti = () => {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ['#8B5CF6', '#FBBF24', '#34D399']
+  });
+};
 
 export default function TestSection({
   student,
@@ -269,6 +280,7 @@ export default function TestSection({
     };
 
     if (isPerfectScore) {
+      triggerConfetti(); // 触发烟花效果
       setShowPerfectScore(true);
     } else {
       alert(`测试完成！总分：${totalScore}分`);

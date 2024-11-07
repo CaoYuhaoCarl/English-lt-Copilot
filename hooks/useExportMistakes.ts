@@ -4,6 +4,7 @@ import questionsData from '@/data/questions.json';
 
 export function useExportMistakes(
   student: Student,
+  students: Student[],
   selectedTests: number[],
   contentRef: React.RefObject<HTMLDivElement>,
   analysisResults: Record<string, any>,
@@ -12,90 +13,95 @@ export function useExportMistakes(
   const [error, setError] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
 
-  const generateCSV = useCallback(() => {
+  const generateCSV = useCallback((exportAllStudents: boolean = true) => {
     try {
-      const testsToExport = selectedTests.length > 0 
-        ? student.testHistory.filter(test => selectedTests.includes(test.id))
-        : student.testHistory;
-
       const headers = [
-        '年级',
-        '班级',
-        '学生姓名',
-        '测试日期',
-        '总分',
-        '题目类型',
-        '题目',
-        '正确答案',
-        '学生答案',
-        '是否正确',
-        '得分',
-        '用时(秒)',
-        '知识点',
-        '能力',
-        'AI分析',
-        '互动记录'
+        '年级', '班级', '姓名', '测试日期', '测试得分',
+        '题目类型', '题目内容', '正确答案', '学生答案',
+        '是否正确', '得分', '用时(秒)', '知识点', '能力维度',
+        'AI分析', '互动记录'
       ];
 
-      const rows = testsToExport.flatMap(test => 
-        test.details.map(detail => {
-          const question = questionsData.questions.find(q => q.id === detail.questionId);
-          if (!question) return null;
+      let dataToExport: any[][] = [headers];
+      
+      // 默认导出所有学生数据
+      const studentsToExport = exportAllStudents ? students : [student];
+      
+      const records = studentsToExport
+        .filter(s => s.testHistory.length > 0)
+        .flatMap(s => 
+          s.testHistory.flatMap(test => 
+            test.details.map(detail => {
+              const question = questionsData.questions.find(q => q.id === detail.questionId);
+              if (!question) return null;
 
-          const key = `${test.id}-${detail.questionId}`;
-          const analysis = analysisResults[key];
-          const interactions = interactionHistory[key];
+              const key = `${test.id}-${detail.questionId}`;
+              return [
+                s.grade,
+                s.class,
+                s.name,
+                test.date,
+                test.score,
+                question.type,
+                question.question,
+                question.answer,
+                detail.userAnswer,
+                detail.isCorrect ? '正确' : '错误',
+                detail.score,
+                (detail.time / 1000).toFixed(1),
+                question.keyPoint,
+                question.ability,
+                analysisResults[key] ? JSON.stringify(analysisResults[key]) : '',
+                interactionHistory[key] ? JSON.stringify(interactionHistory[key]) : ''
+              ];
+            })
+          )
+        ).filter(Boolean);
 
-          return [
-            student.grade,
-            student.class,
-            student.name,
-            test.date,
-            test.score,
-            question.type,
-            question.question,
-            question.answer,
-            detail.userAnswer,
-            detail.isCorrect ? '正确' : '错误',
-            detail.score,
-            (detail.time / 1000).toFixed(1),
-            question.keyPoint,
-            question.ability,
-            analysis ? JSON.stringify(analysis) : '',
-            interactions ? JSON.stringify(interactions) : ''
-          ];
-        })
-        .filter(Boolean)
-      );
+      dataToExport.push(...records);
 
-      const BOM = '\uFEFF';
-      const csv = BOM + [
-        headers.join(','),
-        ...rows.map(row => 
-          row.map(cell => 
-            typeof cell === 'string' && (cell.includes(',') || cell.includes('"') || cell.includes('\n'))
-              ? `"${cell.replace(/"/g, '""')}"`
-              : cell
-          ).join(',')
-        )
-      ].join('\n');
+      // 生成 CSV 内容
+      const csvContent = dataToExport
+        .map(row => row.map(cell => `"${cell}"`).join(','))
+        .join('\n');
 
-      return csv;
+      // 设置文件名
+      const timestamp = new Date().toISOString().split('T')[0];
+      const fileName = exportAllStudents 
+        ? `全部学生错题记录_${timestamp}.csv`
+        : `${student.name}_错题记录_${timestamp}.csv`;
+
+      // 下载文件
+      const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
     } catch (error) {
-      console.error('Error generating CSV:', error);
-      throw new Error('生成CSV数据时出错');
+      console.error('Error downloading CSV:', error);
+      setError(`导出 CSV 时出错：${error instanceof Error ? error.message : '未知错误'}`);
+    } finally {
+      setIsDownloading(false);
     }
-  }, [student, selectedTests, analysisResults, interactionHistory]);
+  }, [student, students, analysisResults, interactionHistory]);
 
-  const handleDownloadCSV = useCallback(() => {
+  const handleDownloadCSV = useCallback((exportAllStudents: boolean = false) => {
     try {
       setIsDownloading(true);
-      const csv = generateCSV();
+      const csv = generateCSV(exportAllStudents);
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `${student.name}_${student.grade}${student.class}班_训练记录_${new Date().toISOString().split('T')[0]}.csv`;
+      const fileName = exportAllStudents 
+        ? `全校学生训练记录_${new Date().toISOString().split('T')[0]}.csv`
+        : `${student.name}_${student.grade}${student.class}班_训练记录_${new Date().toISOString().split('T')[0]}.csv`;
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -342,7 +348,7 @@ export function useExportMistakes(
 
   const handlePrint = useCallback(() => {
     if (selectedTests.length === 0) {
-      setError('请至少选择一次测评记录');
+      setError('请至少选择一次测评记���');
       return;
     }
 

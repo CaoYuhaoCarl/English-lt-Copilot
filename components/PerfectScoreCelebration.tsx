@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Trophy } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import confetti from 'canvas-confetti'
 
 interface PerfectScoreCelebrationProps {
   show: boolean
@@ -29,9 +30,41 @@ export default function PerfectScoreCelebration({ show, onAnimationEnd }: Perfec
         onAnimationEnd()
       }, 3000)
 
+      // 创建连续的烟花效果
+      const duration = 3000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+      const randomInRange = (min: number, max: number) => {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval: NodeJS.Timer = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          return;
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        });
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        });
+      }, 250);
+
       return () => {
         clearTimeout(exitTimer)
         clearTimeout(cleanupTimer)
+        clearInterval(interval)
       }
     }
   }, [show, onAnimationEnd])
@@ -49,7 +82,7 @@ export default function PerfectScoreCelebration({ show, onAnimationEnd }: Perfec
   return (
     <div 
       className={cn(
-        "fixed inset-0 flex items-center justify-center z-50 transition-all duration-500 cursor-pointer",
+        "fixed inset-0 flex items-center justify-center z-[100] transition-all duration-500 cursor-pointer",
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none",
         isLeaving ? "scale-110 opacity-0" : "scale-100"
       )}
@@ -79,7 +112,7 @@ export default function PerfectScoreCelebration({ show, onAnimationEnd }: Perfec
           太棒了!
         </div>
         <div className="text-sm text-gray-300 text-center mt-4">
-          Next
+          点击任意位置继续
         </div>
       </div>
     </div>

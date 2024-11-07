@@ -1,8 +1,7 @@
 import { useState, useCallback } from 'react';
 import { AIAnalysisResult } from '@/lib/aiTypes';
 import { useToast } from "@/components/ui/use-toast";
-
-const OPENROUTER_API_KEY = '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';
+import { AI_MODELS, OPENROUTER_CONFIG } from '@/lib/config/ai';
 
 interface ContextMatch {
   section: string;
@@ -103,14 +102,11 @@ export function useAIInteraction() {
         { role: 'user', content: message }
       ];
 
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const response = await fetch(OPENROUTER_CONFIG.API_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENROUTER_API_KEY}`
-        },
+        headers: OPENROUTER_CONFIG.getHeaders(),
         body: JSON.stringify({
-          model: 'anthropic/claude-3-opus',
+          model: AI_MODELS.DEFAULT,
           messages
         })
       });

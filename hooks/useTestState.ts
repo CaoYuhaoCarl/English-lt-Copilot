@@ -42,6 +42,7 @@ export function useTestState(
   const [showPerfectScore, setShowPerfectScore] = useState(false);
   const [maxPossibleScore, setMaxPossibleScore] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const calculateScore = useCallback((elapsedTime: number, initialScore: number, isCorrect: boolean, timeLimit: number, minTime: number): number => {
     if (!isCorrect) return 0;
@@ -58,6 +59,8 @@ export function useTestState(
   }, []);
 
   const handleAnswerChange = useCallback((id: number, value: string | boolean) => {
+    if (hasSubmitted) return;
+
     if (testMode === 'input') {
       setAnswers(prev => ({ ...prev, [id]: { value, time: 0, score: 0 } }));
     } else {
@@ -83,6 +86,11 @@ export function useTestState(
       setFlippedCards(prev => ({ ...prev, [id]: true }));
       setShowEmoji(true);
       
+      const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
+      if (isLastQuestion && value === true) {
+        setHasSubmitted(true);
+      }
+      
       setTimeout(() => {
         setShowEmoji(false);
         if (currentQuestionIndex < currentQuestions.length - 1) {
@@ -91,7 +99,15 @@ export function useTestState(
         }
       }, 1000);
     }
-  }, [testMode, questionStartTime, currentQuestions, currentQuestionIndex, answers, calculateScore]);
+  }, [
+    testMode, 
+    questionStartTime, 
+    currentQuestions, 
+    currentQuestionIndex, 
+    answers, 
+    calculateScore,
+    hasSubmitted
+  ]);
 
   const handleTypeChange = useCallback((type: string, checked: boolean) => {
     setSelectedTypes(prev => prev.map(t => 
@@ -262,8 +278,8 @@ export function useTestState(
     setCurrentScore(0);
     setShowEmoji(false);
     setShowPerfectScore(false);
+    setHasSubmitted(false);
     setIsTestStarted(false);
-    setIsSubmitting(false);
   }, [setIsTestStarted]);
 
   return {

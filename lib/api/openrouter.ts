@@ -1,6 +1,14 @@
+import { 
+  AI_MODELS, 
+  AI_REQUEST_CONFIG, 
+  OPENROUTER_CONFIG,
+  ERROR_MESSAGES 
+} from '@/lib/config/ai';
 import { AIRequestConfig } from '@/lib/types';
 
-const OPENROUTER_API_KEY = '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';
+if (!process.env.NEXT_PUBLIC_OPENROUTER_API_KEY) {
+  console.error(ERROR_MESSAGES.API_KEY_MISSING);
+}
 
 export class OpenRouterError extends Error {
   constructor(
@@ -15,20 +23,14 @@ export class OpenRouterError extends Error {
 
 export async function makeOpenRouterRequest(config: AIRequestConfig) {
   try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch(OPENROUTER_CONFIG.API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-        'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : '',
-        // 使用 btoa 编码应用名称，避免非 ASCII 字符问题
-        'X-Title': btoa('Carl English Learning System')
-      },
+      headers: OPENROUTER_CONFIG.getHeaders(),
       body: JSON.stringify({
-        model: config.model,
+        model: config.model || AI_MODELS.DEFAULT,
         messages: config.messages,
-        temperature: config.temperature || 0.7,
-        max_tokens: config.maxTokens || 2000
+        temperature: config.temperature || AI_REQUEST_CONFIG.DEFAULT_TEMPERATURE,
+        max_tokens: config.maxTokens || AI_REQUEST_CONFIG.DEFAULT_MAX_TOKENS
       })
     });
 
@@ -44,7 +46,7 @@ export async function makeOpenRouterRequest(config: AIRequestConfig) {
     const data = await response.json();
     
     if (!data.choices?.[0]?.message?.content) {
-      throw new OpenRouterError('API返回的数据格式无效');
+      throw new OpenRouterError(ERROR_MESSAGES.INVALID_RESPONSE);
     }
 
     return data.choices[0].message.content;
@@ -54,11 +56,11 @@ export async function makeOpenRouterRequest(config: AIRequestConfig) {
     }
     
     if (error instanceof TypeError && error.message === 'Failed to fetch') {
-      throw new OpenRouterError('网络连接失败，请检查网络设置');
+      throw new OpenRouterError(ERROR_MESSAGES.NETWORK_ERROR);
     }
 
     throw new OpenRouterError(
-      error instanceof Error ? error.message : '未知错误'
+      error instanceof Error ? error.message : ERROR_MESSAGES.UNKNOWN_ERROR
     );
   }
 }

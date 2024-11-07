@@ -40,11 +40,11 @@ export default function StudentManagementPanel({
   };
 
   return (
-    <Card className="h-full">
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>学生管理</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 flex-1 overflow-hidden">
         <StudentFilters
           filters={filters}
           onFilterChange={updateFilter}
@@ -52,7 +52,7 @@ export default function StudentManagementPanel({
           classes={classes}
         />
 
-        <Tabs value={displayMode} onValueChange={(value: 'list' | 'random') => setDisplayMode(value)}>
+        <Tabs value={displayMode} onValueChange={(value: 'list' | 'random') => setDisplayMode(value)} className="flex flex-col flex-1">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="list" className="flex items-center gap-2">
               <ListFilter className="w-4 h-4" />
@@ -64,7 +64,7 @@ export default function StudentManagementPanel({
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="list" className="mt-4">
+          <TabsContent value="list" className="mt-4 flex-1 overflow-auto">
             <StudentList
               students={filteredStudents}
               selectedStudentId={selectedStudentId}
@@ -73,7 +73,7 @@ export default function StudentManagementPanel({
             />
           </TabsContent>
 
-          <TabsContent value="random" className="mt-4">
+          <TabsContent value="random" className="mt-4 flex-1">
             <RandomPicker
               students={filteredStudents}
               onSelectStudent={setSelectedStudentId}

@@ -1,0 +1,112 @@
+{
+  "questions": [
+      {
+        "id": 1,
+        "type": "句子",
+        "question": "这本书包含了一章美国历史。",
+        "answer": "The book includes a chapter on the history of the United States.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 2,
+        "type": "句子",
+        "question": "价格包含税费和运费。",
+        "answer": "The price includes tax and shipping.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 3,
+        "type": "句子",
+        "question": "女性进入劳动力市场促成了许多积极的变化。",
+        "answer": "The inclusion of women in the workforce has led to many positive changes.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 4,
+        "type": "句子",
+        "question": "我正在为朋友的生日组织聚会。",
+        "answer": "I am organizing a party for my friend's birthday.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 5,
+        "type": "句子",
+        "question": "她是会议组织者。",
+        "answer": "She is the organizer of the conference.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 6,
+        "type": "句子",
+        "question": "这家公司非常有条理。",
+        "answer": "The company is very well-organized.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 8,
+        "type": "句子",
+        "question": "祝你过得愉快。",
+        "answer": "I hope you have a nice day.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 9,
+        "type": "句子",
+        "question": "我希望我们能找到解决问题的方法。",
+        "answer": "I am hopeful that we will find a solution to the problem.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 10,
+        "type": "句子",
+        "question": "情况很绝望。",
+        "answer": "The situation is hopeless.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 11,
+        "type": "句子",
+        "question": "我可以想象在火星上生活会是什么样子。",
+        "answer": "I can imagine what it would be like to live on Mars.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 12,
+        "type": "句子",
+        "question": "她有丰富的想象力。",
+        "answer": "She has a wild imagination.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      },
+      {
+        "id": 13,
+        "type": "句子",
+        "question": "孩子们写了富有想象力的故事。",
+        "answer": "The children wrote imaginative stories.",
+        "textbook": "中考",
+        "keyPoint": "句型积累",
+        "ability": "中英思维"
+      }
+  ]
+} 

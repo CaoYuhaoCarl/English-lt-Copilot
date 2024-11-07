@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Question } from '@/lib/types';
 import QuestionCard from './QuestionCard';
-import ProgressIndicator from './ProgressIndicator';
+import AnimatedProgress from './AnimatedProgress';
 
 interface CardModeProps {
   currentQuestion: Question;
@@ -24,50 +24,61 @@ export default function CardMode({
   const [displayedQuestion, setDisplayedQuestion] = useState(currentQuestion);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
+  const [localFlippedCards, setLocalFlippedCards] = useState(flippedCards);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      setLocalFlippedCards(flippedCards);
+    }
+  }, [flippedCards, isTransitioning]);
 
   useEffect(() => {
     if (currentQuestion.id !== displayedQuestion.id) {
       setSlideDirection(currentQuestionIndex > currentQuestions.findIndex(q => q.id === displayedQuestion.id) ? 'left' : 'right');
       setIsTransitioning(true);
       
-      const timer = setTimeout(() => {
+      const hideTimer = setTimeout(() => {
+        setLocalFlippedCards({});
         setDisplayedQuestion(currentQuestion);
+        
         setTimeout(() => {
           setIsTransitioning(false);
-        }, 30);
-      }, 50);
+        }, 300);
+      }, 200);
       
-      return () => clearTimeout(timer);
+      return () => clearTimeout(hideTimer);
     }
   }, [currentQuestion, displayedQuestion.id, currentQuestionIndex, currentQuestions]);
 
   return (
-    <div className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
-      <ProgressIndicator 
-        currentIndex={currentQuestionIndex}
-        totalQuestions={currentQuestions.length}
-      />
+    <div className="relative flex flex-col h-[calc(100vh-12rem)] justify-start items-center pt-24">
+      <div className="absolute top-0 left-0 right-0 px-4">
+        <AnimatedProgress 
+          value={currentQuestionIndex + 1}
+          max={currentQuestions.length}
+        />
+      </div>
 
-      <div className="absolute top-4 right-4 text-sm font-medium">
+      <div className="absolute top-8 right-4 text-sm font-medium">
         {currentQuestionIndex + 1} / {currentQuestions.length}
       </div>
 
       <div 
         className={cn(
-          "w-full max-w-3xl transition-transform duration-100",
-          isTransitioning && slideDirection === 'left' && "translate-x-[-100%] opacity-0",
-          isTransitioning && slideDirection === 'right' && "translate-x-[100%] opacity-0",
+          "w-full max-w-3xl px-4 transition-all duration-300",
+          isTransitioning && slideDirection === 'left' && "-translate-x-full opacity-0",
+          isTransitioning && slideDirection === 'right' && "translate-x-full opacity-0",
           !isTransitioning && "translate-x-0 opacity-100"
         )}
       >
         <QuestionCard
           question={displayedQuestion}
-          isFlipped={flippedCards[displayedQuestion.id]}
+          isFlipped={localFlippedCards[displayedQuestion.id]}
           onAnswer={handleAnswerChange}
         />
       </div>
 
-      <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2">
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2">
         {currentQuestions.map((_, index) => (
           <div
             key={index}

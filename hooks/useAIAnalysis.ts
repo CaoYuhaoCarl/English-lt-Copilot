@@ -5,6 +5,7 @@ import { defaultAnalysisConfig } from '@/lib/aiConfig';
 import { useToast } from "@/components/ui/use-toast";
 import { makeOpenRouterRequest } from '@/lib/api/openrouter';
 import { handleAIError } from '@/lib/utils/errorHandling';
+import { AI_MODELS } from '@/lib/config/ai';
 
 interface InteractionMessage {
   role: string;
@@ -136,10 +137,8 @@ export function useAIAnalysis() {
         enabledModules.map(async type => {
           const prompt = generatePrompt(type, question, detail);
           const config: AIRequestConfig = {
-            model: type === 'similarQuestions' ? 'openai/gpt-4' : 'anthropic/claude-3-opus',
-            messages: [{ role: 'user', content: prompt }],
-            temperature: 0.7,
-            maxTokens: 2000
+            model: type === 'similarQuestions' ? AI_MODELS.SIMILAR_QUESTIONS : AI_MODELS.DEFAULT,
+            messages: [{ role: 'user', content: prompt }]
           };
 
           const content = await makeOpenRouterRequest(config);
@@ -180,6 +179,46 @@ export function useAIAnalysis() {
     }));
   }, []);
 
+  const regenerateAnalysis = useCallback(async (
+    question: Question,
+    detail: TestDetail,
+    testId: number,
+    moduleType: keyof AIAnalysisConfig
+  ) => {
+    const key = `${testId}-${detail.questionId}`;
+    setIsLoading(prev => ({ ...prev, [key]: true }));
+    setError(null);
+
+    try {
+      const prompt = generatePrompt(moduleType, question, detail);
+      const config: AIRequestConfig = {
+        model: moduleType === 'similarQuestions' ? AI_MODELS.SIMILAR_QUESTIONS : AI_MODELS.DEFAULT,
+        messages: [{ role: 'user', content: prompt }]
+      };
+
+      const content = await makeOpenRouterRequest(config);
+
+      setAnalysisResults(prev => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          [moduleType]: content
+        }
+      }));
+
+      toast({
+        title: "重新生成完成",
+        description: "AI分析已更新，请查看最新内容",
+      });
+
+    } catch (error) {
+      const errorMessage = handleAIError(error);
+      setError(errorMessage);
+    } finally {
+      setIsLoading(prev => ({ ...prev, [key]: false }));
+    }
+  }, [generatePrompt, toast]);
+
   return {
     isLoading,
     error,
@@ -188,6 +227,7 @@ export function useAIAnalysis() {
     config,
     updateConfig,
     interactionHistory,
-    addInteraction
+    addInteraction,
+    regenerateAnalysis
   };
 }

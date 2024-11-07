@@ -27,6 +27,7 @@ export default function AIAnalysis({
     error, 
     analysisResults, 
     analyzeError,
+    regenerateAnalysis,
     config,
     updateConfig,
     interactionHistory,
@@ -85,6 +86,7 @@ export default function AIAnalysis({
           isLoading={isLoading}
           analysisResults={analysisResults}
           onAnalyze={analyzeError}
+          onRegenerate={regenerateAnalysis}
           onAddInteraction={addInteraction}
         />
       </CardContent>

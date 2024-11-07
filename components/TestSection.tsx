@@ -13,6 +13,7 @@ import TestConfigPanel from './test/TestConfigPanel';
 import CardMode from './test/CardMode';
 import InputMode from './test/InputMode';
 import TestHeader from './test/TestHeader';
+import TestLayout from './test/TestLayout';
 
 interface TestSectionProps {
   student: Student;
@@ -20,6 +21,30 @@ interface TestSectionProps {
   setIsTestStarted: (isStarted: boolean) => void;
   sharedQuestions?: Question[];
   setSharedQuestions?: (questions: Question[]) => void;
+}
+
+// 辅助函数：标准化字符串用于比较
+function normalizeString(str: string): string {
+  return str.toLowerCase().trim();
+}
+
+// 辅助函数：获取所有可能的答案
+function getPossibleAnswers(answer: string | string[]): string[] {
+  if (Array.isArray(answer)) {
+    return answer;
+  }
+  // 用 '或' 或 '|' 分割答案，并处理可能的空格
+  return answer.split(/[或|]/).map(a => a.trim());
+}
+
+// 辅助函数：验证答案
+function isCorrectAnswer(userAnswer: string, correctAnswer: string | string[]): boolean {
+  const normalizedUserAnswer = normalizeString(userAnswer);
+  const possibleAnswers = getPossibleAnswers(correctAnswer);
+  
+  return possibleAnswers.some(answer => 
+    normalizeString(answer) === normalizedUserAnswer
+  );
 }
 
 export default function TestSection({
@@ -30,12 +55,12 @@ export default function TestSection({
   setSharedQuestions,
 }: TestSectionProps) {
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>([
-    { type: "单词", count: 1, score: 25, timeLimit: 5, minTime: 2 },
-    { type: "短语", count: 1, score: 25, timeLimit: 5, minTime: 2 },
-    { type: "句子", count: 1, score: 25, timeLimit: 8, minTime: 3 },
-    { type: "语法", count: 1, score: 25, timeLimit: 8, minTime: 3 }
+    { type: "单词", count: 4, score: 25, timeLimit: 10, minTime: 5 },
+    { type: "短语", count: 0, score: 25, timeLimit: 10, minTime: 5 },
+    { type: "句子", count: 0, score: 25, timeLimit: 15, minTime: 8 },
+    { type: "语法", count: 0, score: 25, timeLimit: 15, minTime: 8 }
   ]);
-  const [testMode, setTestMode] = useState<'input' | 'card'>('input');
+  const [testMode, setTestMode] = useState<'input' | 'card'>('card');
   const [questionMode, setQuestionMode] = useState<'unified' | 'random'>('random');
   const [currentQuestions, setCurrentQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Record<number, { value: string | boolean; time: number; score: number; }>>({});
@@ -48,6 +73,9 @@ export default function TestSection({
   const [currentScore, setCurrentScore] = useState(0);
   const [showPerfectScore, setShowPerfectScore] = useState(false);
   const [maxPossibleScore, setMaxPossibleScore] = useState(0);
+  const [selectedTextbook, setSelectedTextbook] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const resetTest = useCallback(() => {
     setIsTestActive(false);
@@ -61,6 +89,7 @@ export default function TestSection({
     setShowEmoji(false);
     setShowPerfectScore(false);
     setIsTestStarted(false);
+    setHasSubmitted(false);
   }, [setIsTestStarted]);
 
   const calculateScore = useCallback((elapsedTime: number, initialScore: number, isCorrect: boolean, timeLimit: number, minTime: number): number => {
@@ -151,9 +180,19 @@ export default function TestSection({
     let filteredQuestions: Question[] = [];
     selectedTypes.forEach(type => {
       if (type.count > 0) {
-        const typeQuestions = questionsData.questions.filter(q => q.type === type.type);
+        let typeQuestions = questionsData.questions.filter(q => q.type === type.type);
+        
+        if (selectedTextbook && selectedTextbook !== 'all') {
+          typeQuestions = typeQuestions.filter(q => q.textbook === selectedTextbook);
+        }
+        
         const shuffledQuestions = [...typeQuestions].sort(() => Math.random() - 0.5);
         const availableQuestions = shuffledQuestions.slice(0, type.count);
+        
+        if (availableQuestions.length < type.count) {
+          alert(`警告：${type.type}类型的题目数量不足，仅找到${availableQuestions.length}道题`);
+        }
+        
         filteredQuestions = filteredQuestions.concat(
           availableQuestions.map(q => ({
             ...q,
@@ -165,7 +204,7 @@ export default function TestSection({
       }
     });
     return filteredQuestions;
-  }, [selectedTypes]);
+  }, [selectedTypes, selectedTextbook]);
 
   const startTest = useCallback(() => {
     const totalQuestions = selectedTypes.reduce((sum, type) => sum + type.count, 0);
@@ -207,64 +246,82 @@ export default function TestSection({
   }, [questionMode, sharedQuestions, setSharedQuestions, generateQuestions, setIsTestStarted]);
 
   const handleSubmit = useCallback(() => {
-    if (currentQuestions.length === 0) return;
+    if (currentQuestions.length === 0 || hasSubmitted) return;
 
-    const endTime = new Date().toISOString();
-    const details = currentQuestions.map(q => {
-      const answer = answers[q.id];
-      const isCorrect = testMode === 'input'
-        ? (answer?.value as string)?.toLowerCase() === q.answer.toLowerCase()
-        : answer?.value === true;
-      const score = testMode === 'input'
-        ? (isCorrect ? q.score : 0)
-        : (answer?.score || 0);
-      return {
-        questionId: q.id,
-        userAnswer: testMode === 'input' 
+    try {
+      setHasSubmitted(true);
+      const endTime = new Date().toISOString();
+      const details = currentQuestions.map(q => {
+        const answer = answers[q.id];
+        const userAnswer = testMode === 'input' 
           ? (answer?.value as string) || "" 
-          : (answer?.value === true ? "正确" : "错误"),
-        isCorrect: isCorrect,
-        score: score,
-        time: answer?.time || 0
+          : (answer?.value === true ? "正确" : "错误");
+        
+        const isCorrect = testMode === 'input'
+          ? isCorrectAnswer(userAnswer, q.answer)
+          : answer?.value === true;
+
+        const score = testMode === 'input'
+          ? (isCorrect ? (q.score || 0) : 0)
+          : (answer?.score || 0);
+
+        return {
+          questionId: q.id,
+          userAnswer,
+          isCorrect,
+          score,
+          time: answer?.time || 0
+        };
+      });
+
+      const totalScore = details.reduce((sum, detail) => sum + detail.score, 0);
+      const maxPossibleScore = currentQuestions.reduce((sum, q) => sum + (q.score || 0), 0);
+      const isPerfectScore = totalScore === maxPossibleScore;
+
+      const newTestHistory = {
+        id: student.testHistory.length + 1,
+        date: endTime.split('T')[0],
+        score: totalScore,
+        details: details
       };
-    });
 
-    const totalScore = details.reduce((sum, detail) => sum + detail.score, 0);
-    const maxPossibleScore = currentQuestions.reduce((sum, q) => sum + (q.score || 0), 0);
-    const isPerfectScore = totalScore === maxPossibleScore;
+      updateStudentTestHistory(newTestHistory);
 
-    const newTestHistory = {
-      id: student.testHistory.length + 1,
-      date: endTime.split('T')[0],
-      score: totalScore,
-      details: details
-    };
-
-    if (isPerfectScore) {
-      setShowPerfectScore(true);
-    } else {
-      alert(`测试完成！总分：${totalScore}分`);
-      resetTest();
+      if (isPerfectScore) {
+        setShowPerfectScore(true);
+      } else {
+        alert(`测试完成！总分：${totalScore}分`);
+        resetTest();
+      }
+    } catch (error) {
+      console.error('Error submitting test:', error);
+      alert('提交测试时出错，请重试');
     }
-
-    updateStudentTestHistory(newTestHistory);
-  }, [currentQuestions, answers, testMode, student.testHistory.length, updateStudentTestHistory, resetTest]);
+  }, [
+    currentQuestions,
+    answers,
+    testMode,
+    student.testHistory.length,
+    updateStudentTestHistory,
+    resetTest,
+    hasSubmitted
+  ]);
 
   useEffect(() => {
-    if (testMode === 'card' && isTestActive && Object.keys(answers).length === currentQuestions.length) {
+    if (!hasSubmitted && testMode === 'card' && isTestActive && Object.keys(answers).length === currentQuestions.length) {
       handleSubmit();
     }
-  }, [answers, currentQuestions.length, testMode, isTestActive, handleSubmit]);
+  }, [answers, currentQuestions.length, testMode, isTestActive, handleSubmit, hasSubmitted]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (isTestActive && timeLeft > 0) {
-      timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-    } else if (timeLeft === 0 && isTestActive) {
+    if (!hasSubmitted && isTestActive && timeLeft === 0) {
       handleSubmit();
+    } else if (isTestActive && timeLeft > 0) {
+      timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
     }
     return () => clearTimeout(timer);
-  }, [timeLeft, isTestActive, handleSubmit]);
+  }, [timeLeft, isTestActive, handleSubmit, hasSubmitted]);
 
   useEffect(() => {
     if (isTestActive && testMode === 'card') {
@@ -280,51 +337,45 @@ export default function TestSection({
           <CardDescription>更系统、更科学、更有效!</CardDescription>
         </CardHeader>
         <CardContent>
-          {!isTestActive ? (
-            <TestConfigPanel
-              questionMode={questionMode}
-              setQuestionMode={setQuestionMode}
-              selectedTypes={selectedTypes}
-              handleTypeChange={handleTypeChange}
-              handleCountChange={handleCountChange}
-              handleScoreChange={handleScoreChange}
-              handleTimeLimitChange={handleTimeLimitChange}
-              handleMinTimeChange={handleMinTimeChange}
-              testMode={testMode}
-              setTestMode={setTestMode}
-              startTest={startTest}
-              sharedQuestions={sharedQuestions}
-            />
-          ) : (
-            <>
-              <TestHeader
-                timeLeft={timeLeft}
-                testMode={testMode}
-                currentScore={currentScore}
-                maxScore={maxPossibleScore}
-                showEmoji={showEmoji}
-              />
-              
-              {testMode === 'input' ? (
-                <InputMode
-                  questions={currentQuestions}
-                  answers={answers}
-                  handleAnswerChange={handleAnswerChange}
-                  handleSubmit={handleSubmit}
-                />
-              ) : (
-                currentQuestions[currentQuestionIndex] && (
-                  <CardMode
-                    currentQuestion={currentQuestions[currentQuestionIndex]}
-                    currentQuestionIndex={currentQuestionIndex}
-                    currentQuestions={currentQuestions}
-                    flippedCards={flippedCards}
-                    handleAnswerChange={handleAnswerChange}
-                  />
-                )
-              )}
-            </>
-          )}
+          <TestLayout
+            isTestActive={isTestActive}
+            configPanelProps={{
+              questionMode,
+              setQuestionMode,
+              selectedTypes,
+              handleTypeChange,
+              handleCountChange,
+              handleScoreChange,
+              handleTimeLimitChange,
+              handleMinTimeChange,
+              testMode,
+              setTestMode,
+              startTest,
+              sharedQuestions,
+              selectedTextbook,
+              setSelectedTextbook,
+            }}
+            contentProps={{
+              testMode,
+              timeLeft,
+              currentScore,
+              maxScore: maxPossibleScore,
+              showEmoji,
+              cardModeProps: {
+                currentQuestion: currentQuestions[currentQuestionIndex],
+                currentQuestionIndex,
+                currentQuestions,
+                flippedCards,
+                handleAnswerChange,
+              },
+              inputModeProps: {
+                questions: currentQuestions,
+                answers,
+                handleAnswerChange,
+                handleSubmit,
+              }
+            }}
+          />
         </CardContent>
       </Card>
       

@@ -52,10 +52,8 @@ export default function BatchExportDialog({
     );
   };
 
-  const studentsWithMistakes = students.filter(student =>
-    student.testHistory.some(test =>
-      test.details.some(detail => !detail.isCorrect)
-    )
+  const studentsWithRecords = students.filter(student =>
+    student.testHistory.length > 0
   );
 
   return (
@@ -72,17 +70,19 @@ export default function BatchExportDialog({
             onClick={handleSelectAll}
             className="w-full mb-4"
           >
-            {selectedStudentIds.length === studentsWithMistakes.length ? '取消全选' : '全选'}
+            {selectedStudentIds.length === studentsWithRecords.length ? '取消全选' : '全选'}
           </Button>
 
           <ScrollArea className="h-[400px] pr-4">
             <div className="space-y-4">
-              {studentsWithMistakes.map((student) => {
+              {studentsWithRecords.map((student) => {
+                const totalQuestions = student.testHistory.reduce((count, test) =>
+                  count + test.details.length, 0
+                );
+
                 const mistakeCount = student.testHistory.reduce((count, test) =>
                   count + test.details.filter(detail => !detail.isCorrect).length, 0
                 );
-
-                if (mistakeCount === 0) return null;
 
                 return (
                   <div
@@ -109,6 +109,9 @@ export default function BatchExportDialog({
                           {mistakeCount} 道错题
                         </Badge>
                         <Badge>
+                          {totalQuestions} 道题目
+                        </Badge>
+                        <Badge variant="outline">
                           {student.testHistory.length} 次测试
                         </Badge>
                       </div>

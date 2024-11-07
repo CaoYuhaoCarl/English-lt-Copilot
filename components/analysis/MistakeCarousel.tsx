@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from '@/lib/utils';
 import AIAnalysisCard from './AIAnalysisCard';
 import { Question, TestDetail, TestHistory } from '@/lib/types';
+import { AIAnalysisResult, AIAnalysisConfig } from '@/lib/types';
 
 interface MistakeCarouselProps {
   mistakes: Array<{
@@ -15,8 +16,9 @@ interface MistakeCarouselProps {
     question: Question;
   }>;
   isLoading: Record<string, boolean>;
-  analysisResults: Record<string, any>;
-  onAnalyze: (question: Question, detail: TestDetail, testId: number) => void;
+  analysisResults: Record<string, AIAnalysisResult>;
+  onAnalyze: (question: Question, detail: TestDetail, testId: number) => Promise<void>;
+  onRegenerate: (question: Question, detail: TestDetail, testId: number, moduleType: keyof AIAnalysisConfig) => Promise<void>;
   onAddInteraction: (key: string, message: { role: string; content: string }) => void;
 }
 
@@ -25,6 +27,7 @@ export default function MistakeCarousel({
   isLoading,
   analysisResults,
   onAnalyze,
+  onRegenerate,
   onAddInteraction
 }: MistakeCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({

@@ -11,6 +11,7 @@ export interface TestHistory {
   date: string;
   score: number;
   details: TestDetail[];
+  type?: 'test' | 'manual_entry';
 }
 
 export interface TestDetail {

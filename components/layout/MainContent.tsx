@@ -59,6 +59,7 @@ export default function MainContent({
               students={students}
               analysisResults={analysisResults}
               interactionHistory={interactionHistory}
+              updateStudentTestHistory={updateStudentTestHistory}
             />
           </>
         )}

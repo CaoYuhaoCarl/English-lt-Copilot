@@ -1,0 +1,1219 @@
+{
+  "questions": [
+    {
+        "id": 1,
+        "type": "单词",
+        "question": "椅子",
+        "answer": "chair",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "记忆能力"
+      },
+      {
+        "id": 2,
+        "type": "单词",
+        "question": "海关",
+        "answer": "customs",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "抽象思维"
+      },
+      {
+        "id": 3,
+        "type": "单词",
+        "question": "书桌",
+        "answer": "desk",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "记忆能力"
+      },
+      {
+        "id": 4,
+        "type": "单词",
+        "question": "护照",
+        "answer": "passport",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "抽象思维"
+      },
+      {
+        "id": 5,
+        "type": "单词",
+        "question": "相同的",
+        "answer": "same",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "记忆能力"
+      },
+      {
+        "id": 6,
+        "type": "单词",
+        "question": "新闻",
+        "answer": "news",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "抽象思维"
+      },
+      {
+        "id": 7,
+        "type": "单词",
+        "question": "懒的",
+        "answer": "lazy",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "记忆能力"
+      },
+      {
+        "id": 8,
+        "type": "单词",
+        "question": "工程师",
+        "answer": "engineer",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "抽象思维"
+      },
+      {
+        "id": 9,
+        "type": "单词",
+        "question": "冰箱",
+        "answer": "fridge|refrigerator",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "记忆能力"
+      },
+      {
+        "id": 10,
+        "type": "单词",
+        "question": "国籍",
+        "answer": "nationality",
+        "textbook": "NCE1",
+        "keyPoint": "单词拼写",
+        "ability": "抽象思维"
+      },
+      {
+        "id": 11,
+        "type": "单词",
+        "question": "这些",
+        "answer": "these",
+        "textbook": "",
+        "keyPoint": "代词",
+        "ability": "词汇理解"
+        },
+        {
+          "id": 12,
+          "type": "单词",
+          "question": "红色的",
+          "answer": "red|reddish",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 13,
+          "type": "单词",
+          "question": "灰色的",
+          "answer": "gray|grey",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 14,
+          "type": "单词",
+          "question": "黄色的",
+          "answer": "yellow|yellowish",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 15,
+          "type": "单词",
+          "question": "黑色的",
+          "answer": "black",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 16,
+          "type": "单词",
+          "question": "橘黄色的",
+          "answer": "orange",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 17,
+          "type": "单词",
+          "question": "雇员",
+          "answer": "employee",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 18,
+          "type": "单词",
+          "question": "勤奋的",
+          "answer": "hard-working|diligent",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 19,
+          "type": "单词",
+          "question": "推销员",
+          "answer": "sales reps|salesperson",
+          "textbook": "",
+          "keyPoint": "词组",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 20,
+          "type": "单词",
+          "question": "男人",
+          "answer": "man|men",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 21,
+          "type": "单词",
+          "question": "办公室",
+          "answer": "office",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 22,
+          "type": "单词",
+          "question": "助手",
+          "answer": "assistant",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 23,
+          "type": "单词",
+          "question": "事情",
+          "answer": "matter",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 24,
+          "type": "单词",
+          "question": "孩子们",
+          "answer": "children|kids",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 25,
+          "type": "单词",
+          "question": "累，疲乏",
+          "answer": "tired",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 26,
+          "type": "单词",
+          "question": "男孩",
+          "answer": "boy",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 27,
+          "type": "单词",
+          "question": "妈妈(儿语)",
+          "answer": "mum|mom",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 28,
+          "type": "单词",
+          "question": "坐下",
+          "answer": "sit down",
+          "textbook": "",
+          "keyPoint": "词组",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 29,
+          "type": "单词",
+          "question": "口渴",
+          "answer": "thirsty",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 30,
+          "type": "单词",
+          "question": "好，可以",
+          "answer": "right|ok|alright|fine|okay|good|well",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 31,
+          "type": "单词",
+          "question": "冰淇淋",
+          "answer": "ice cream",
+          "textbook": "",
+          "keyPoint": "词组",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 32,
+          "type": "单词",
+          "question": "大的",
+          "answer": "big|large",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 33,
+          "type": "单词",
+          "question": "小的",
+          "answer": "small|little",
+          "source": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 34,
+          "type": "单词",
+          "question": "开着的",
+          "answer": "open|opened",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 35,
+          "type": "单词",
+          "question": "关着的",
+          "answer": "closed|shut",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 36,
+          "type": "单词",
+          "question": "轻的",
+          "answer": "light|lightweight",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 37,
+          "type": "单词",
+          "question": "重的",
+          "answer": "heavy|heavyweight",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 38,
+          "type": "单词",
+          "question": "长的",
+          "answer": "long|lengthy",
+          "textbook": "",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 39,
+          "type": "单词",
+          "question": "鞋子",
+          "answer": "shoes|footwear",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 40,
+          "type": "单词",
+          "question": "祖父，外祖父",
+          "answer": "grandfather|grandpa",
+          "textbook": "",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 41,
+          "type": "单词",
+          "question": "祖母，外祖母",
+          "answer": "grandmother|grandma",
+          "textbook": "NCE1",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 42,
+          "type": "单词",
+          "question": "私人的",
+          "answer": "private",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 43,
+          "type": "单词",
+          "question": "谈话",
+          "answer": "conversation",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 44,
+          "type": "单词",
+          "question": "剧场，戏院",
+          "answer": "theatre",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 45,
+          "type": "单词",
+          "question": "座位",
+          "answer": "seat",
+            "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 46,
+          "type": "单词",
+          "question": "戏；玩，游戏",
+          "answer": "play",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 47,
+          "type": "单词",
+          "question": "大声地",
+          "answer": "loudly",
+          "textbook": "NCE2",
+          "keyPoint": "副词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 48,
+          "type": "单词",
+          "question": "生气的",
+          "answer": "angry",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 49,
+          "type": "单词",
+          "question": "生气地",
+          "answer": "angrily",
+          "textbook": "NCE2",
+          "keyPoint": "副词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 50,
+          "type": "单词",
+          "question": "注意",
+          "answer": "attention",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 51,
+          "type": "单词",
+          "question": "容忍",
+          "answer": "bear",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 52,
+          "type": "单词",
+          "question": "事；商业，生意",
+          "answer": "business",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 53,
+          "type": "单词",
+          "question": "无礼地，粗鲁地",
+          "answer": "rudely",
+          "textbook": "NCE2",
+          "keyPoint": "副词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 54,
+          "type": "单词",
+          "question": "直到",
+          "answer": "until",
+          "textbook": "NCE2",
+          "keyPoint": "介词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 55,
+          "type": "单词",
+          "question": "外面",
+          "answer": "outside",
+          "textbook": "NCE2",
+          "keyPoint": "副词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 56,
+          "type": "单词",
+          "question": "(铃、电话等)响",
+          "answer": "ring",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 57,
+          "type": "单词",
+          "question": "姑母，姨母",
+          "answer": "aunt",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 58,
+          "type": "单词",
+          "question": "重复",
+          "answer": "repeat",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 59,
+          "type": "单词",
+          "question": "寄，送",
+          "answer": "send",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 60,
+          "type": "单词",
+          "question": "明信片",
+          "answer": "postcard",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 61,
+          "type": "单词",
+          "question": "毁掉",
+          "answer": "spoil",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 62,
+          "type": "单词",
+          "question": "博物馆",
+          "answer": "museum",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 63,
+          "type": "单词",
+          "question": "公共的",
+          "answer": "public",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 64,
+          "type": "单词",
+          "question": "友好的",
+          "answer": "friendly",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 65,
+          "type": "单词",
+          "question": "服务员，招待员",
+          "answer": "waiter",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 66,
+          "type": "单词",
+          "question": "借给",
+          "answer": "lend",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 67,
+          "type": "单词",
+          "question": "决定",
+          "answer": "decision",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 68,
+          "type": "单词",
+          "question": "整个的",
+          "answer": "whole",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 69,
+          "type": "单词",
+          "question": "唯一的，单一的",
+          "answer": "single",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 70,
+          "type": "单词",
+          "question": "令人兴奋的",
+          "answer": "exciting",
+          "textbook": "NCE2",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 71,
+          "type": "单词",
+          "question": "接受，收到",
+          "answer": "receive",
+          "textbook": "NCE2",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 72,
+          "type": "单词",
+          "question": "乐器，器械",
+          "answer": "instrument",
+          "textbook": "NCE2",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 73,
+          "type": "单词",
+          "question": "单位、单元",
+          "answer": "unit",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 74,
+          "type": "单词", 
+          "question": "部分，章节",
+          "answer": "section",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 75,
+          "type": "单词",
+          "question": "谈话，会话",
+          "answer": "conversation",
+          "textbook": "中考", 
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 76,
+          "type": "单词",
+          "question": "铃，钟",
+          "answer": "bell",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 77,
+          "type": "单词",
+          "question": "瓶子",
+          "answer": "bottle",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 78,
+          "type": "单词",
+          "question": "橡皮擦",
+          "answer": "eraser",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 79,
+          "type": "单词",
+          "question": "钥匙",
+          "answer": "key",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 80,
+          "type": "单词",
+          "question": "东西，事物",
+          "answer": "thing",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 81,
+          "type": "单词",
+          "question": "需要",
+          "answer": "need",
+          "textbook": "中考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 82,
+          "type": "单词",
+          "question": "乐趣，有趣",
+          "answer": "fun",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 83,
+          "type": "单词",
+          "question": "院子",
+          "answer": "yard",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 84,
+          "type": "单词",
+          "question": "胡萝卜",
+          "answer": "carrot",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 85,
+          "type": "单词",
+          "question": "鹅",
+          "answer": "goose",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 86,
+          "type": "单词",
+          "question": "人们",
+          "answer": "people",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 87,
+          "type": "单词",
+          "question": "早晨",
+          "answer": "morning",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 88,
+          "type": "单词",
+          "question": "班级",
+          "answer": "class",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 89,
+          "type": "单词",
+          "question": "名字",
+          "answer": "name",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 90,
+          "type": "单词",
+          "question": "再见",
+          "answer": "goodbye",
+          "textbook": "中考",
+          "keyPoint": "感叹词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 91,
+          "type": "单词",
+          "question": "时间",
+          "answer": "time",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 92,
+          "type": "单词",
+          "question": "书包",
+          "answer": "schoolbag",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 93,
+          "type": "单词",
+          "question": "帽子",
+          "answer": "cap",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 94,
+          "type": "单词",
+          "question": "尺子",
+          "answer": "ruler",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 95,
+          "type": "单词",
+          "question": "铅笔",
+          "answer": "pencil",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 96,
+          "type": "单词",
+          "question": "红色的",
+          "answer": "red",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 97,
+          "type": "单词",
+          "question": "绿色的",
+          "answer": "green",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 98,
+          "type": "单词",
+          "question": "蓝色的",
+          "answer": "blue",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 99,
+          "type": "单词",
+          "question": "黄色的",
+          "answer": "yellow",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 100,
+          "type": "单词",
+          "question": "橙色的",
+          "answer": "orange",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 101,
+          "type": "单词",
+          "question": "黑色的",
+          "answer": "black",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 102,
+          "type": "单词",
+          "question": "白色的",
+          "answer": "white",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 103,
+          "type": "单词",
+          "question": "棕色的",
+          "answer": "brown",
+          "textbook": "中考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 104,
+          "type": "单词",
+          "question": "颜色",
+          "answer": "colour",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 105,
+          "type": "单词",
+          "question": "自行车",
+          "answer": "bicycle|bike",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 106,
+          "type": "单词",
+          "question": "裤子",
+          "answer": "trousers",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 107,
+          "type": "单词",
+          "question": "床",
+          "answer": "bed",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 108,
+          "type": "单词",
+          "question": "书桌",
+          "answer": "desk",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 109,
+          "type": "单词",
+          "question": "椅子",
+          "answer": "chair",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 110,
+          "type": "单词",
+          "question": "猫",
+          "answer": "cat",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 111,
+          "type": "单词",
+          "question": "鞋子",
+          "answer": "shoe",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 112,
+          "type": "单词",
+          "question": "盒子",
+          "answer": "box",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 113,
+          "type": "单词",
+          "question": "一双，一对",
+          "answer": "pair",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 114,
+          "type": "单词",
+          "question": "妈妈",
+          "answer": "mum|mom",
+          "textbook": "中考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 115,
+          "type": "单词",
+          "question": "令人尴尬的、难对付的",
+          "answer": "awkward",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 116,
+          "type": "单词",
+          "question": "初级的，地位低的",
+          "answer": "junior",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 117,
+          "type": "单词", 
+          "question": "探索",
+          "answer": "explore",
+          "textbook": "高考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 118,
+          "type": "单词",
+          "question": "自信的",
+          "answer": "confident",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 119,
+          "type": "单词",
+          "question": "信心",
+          "answer": "confidence",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 120,
+          "type": "单词",
+          "question": "向前的",
+          "answer": "forward",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 121,
+          "type": "短语",
+          "question": "记笔记",
+          "answer": "take notes",
+          "textbook": "高考",
+          "keyPoint": "动词短语",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 122,
+          "type": "单词",
+          "question": "闪光",
+          "answer": "flash",
+          "textbook": "高考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 123,
+          "type": "单词",
+          "question": "组织",
+          "answer": "organise",
+          "textbook": "高考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 124,
+          "type": "单词",
+          "question": "组织",
+          "answer": "organization|organisation",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 125,
+          "type": "单词",
+          "question": "目标",
+          "answer": "goal",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 126,
+          "type": "单词",
+          "question": "策略",
+          "answer": "strategy",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 127,
+          "type": "单词",
+          "question": "伙伴",
+          "answer": "partner",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 128,
+          "type": "单词",
+          "question": "改进",
+          "answer": "improve",
+          "textbook": "高考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 129,
+          "type": "单词",
+          "question": "好奇的",
+          "answer": "curious",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 130,
+          "type": "单词",
+          "question": "公司",
+          "answer": "company",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 131,
+          "type": "单词",
+          "question": "个性",
+          "answer": "personality",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 132,
+          "type": "单词",
+          "question": "风格",
+          "answer": "style",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 133,
+          "type": "单词",
+          "question": "复习",
+          "answer": "revise",
+          "textbook": "高考",
+          "keyPoint": "动词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 134,
+          "type": "单词",
+          "question": "青少年的",
+          "answer": "teenage",
+          "textbook": "高考",
+          "keyPoint": "形容词",
+          "ability": "词汇理解"
+        },
+        {
+          "id": 135,
+          "type": "单词",
+          "question": "青少年",
+          "answer": "teenager",
+          "textbook": "高考",
+          "keyPoint": "名词",
+          "ability": "词汇理解"
+        }
+  ]
+} 
